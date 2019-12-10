@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  node-service:
+    image: node:8-alpine
+    volumes:
+      - ./node:/home/app
+    command: node ./home/app/index.js
+    ports:
+      - 5001:3000
+  web-service:
+    image: nginx
+    volumes:
+      - ./web:/usr/share/nginx/html
+    ports:
+      - 8080:80
+  php-service:
+    image: php:apache
+    volumes:
+      - ./php:/var/www/html
+    ports:
+      - 5000:80
